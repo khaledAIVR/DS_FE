@@ -35,7 +35,7 @@ const UserContainer = ({ initialValues }) => {
     console.log('data: ', preprocessRequestData(values));
 
     axios
-      .post('http://10.20.41.73:8000/pred', preprocessRequestData(values))
+      .post('http://217.160.44.217:80/pred', preprocessRequestData(values))
       .then((response) => {
         setSubmitting(false);
         console.log(response.data); // Handle the response

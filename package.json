@@ -2,7 +2,7 @@
   "name": "formik-and-material-ui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://khaledAIVR.github.io/fe-ds-ss23-1",
+  "homepage": "https://khaledaivr.github.io/DS_FE",
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@material-ui/core": "4.11.3",

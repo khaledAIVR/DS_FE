@@ -10,7 +10,6 @@ import useStyles from './styles/AppStyles';
 const App = () => {
   const classes = useStyles();
   const [result, setResult] = useState(null);
-  const [threshold, setThreshold] = useState(0.6);
   const newOne = {
     software_type: '',
     cost: '',

@@ -34,17 +34,12 @@ const UserContainer = ({ initialValues, setResult }) => {
 
     console.log('data: ', preprocessRequestData(values));
 
-    // .post('http://217.160.44.217:80/pred', preprocessRequestData(values))
     axios
-      .post(
-        'https://64a6c900096b3f0fcc8095c6.mockapi.io/feds',
-        preprocessRequestData(values)
-      )
+      .post('http://217.160.44.217:80/pred', preprocessRequestData(values))
 
       .then((response) => {
         setSubmitting(false);
-
-        setResult(response[0]);
+        setResult(response.data[0]);
       })
       .catch((error) => {
         setSubmitting(false);

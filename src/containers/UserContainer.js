@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import UserForm from '../components/UserForm';
 
-const UserContainer = ({ initialValues }) => {
+const UserContainer = ({ initialValues, setResult }) => {
   const validationSchema = Yup.object({
     software_type: Yup.string().required('Required'),
     cost: '',
@@ -34,11 +34,17 @@ const UserContainer = ({ initialValues }) => {
 
     console.log('data: ', preprocessRequestData(values));
 
+    // .post('http://217.160.44.217:80/pred', preprocessRequestData(values))
     axios
-      .post('http://217.160.44.217:80/pred', preprocessRequestData(values))
+      .post(
+        'https://64a6c900096b3f0fcc8095c6.mockapi.io/feds',
+        preprocessRequestData(values)
+      )
+
       .then((response) => {
         setSubmitting(false);
-        console.log(response.data); // Handle the response
+
+        setResult(response[0]);
       })
       .catch((error) => {
         setSubmitting(false);

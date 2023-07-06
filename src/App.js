@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, CssBaseline } from '@material-ui/core';
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -9,7 +9,8 @@ import useStyles from './styles/AppStyles';
 
 const App = () => {
   const classes = useStyles();
-
+  const [result, setResult] = useState(null);
+  const [threshold, setThreshold] = useState(0.6);
   const newOne = {
     software_type: '',
     cost: '',
@@ -20,6 +21,8 @@ const App = () => {
     software_requirements: '',
   };
 
+  console.log(result);
+
   return (
     <Container maxWidth="md">
       <CssBaseline />
@@ -29,8 +32,36 @@ const App = () => {
         </h1>
       </header>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <UserContainer initialValues={newOne} />
+        <UserContainer initialValues={newOne} setResult={setResult} />
       </MuiPickersUtilsProvider>
+
+      {result ? (
+        <>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              marginTop: '20px',
+            }}
+          >
+            <h1>
+              The Model Suggest
+              {result.label === 'LABEL_0' ? (
+                <span style={{ marginLeft: '10px', marginRight: '10px' }}>
+                  NOT
+                </span>
+              ) : (
+                '  '
+              )}
+              Buying the Software with Confidence of:
+            </h1>
+            <h1>{result.score.toFixed(2)}</h1>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 };
